@@ -1,48 +1,34 @@
-# Containing Files
-
-1. The LICENSE file:
-In most cases, the license for SAP sample projects is `Apache 2.0`.
-
-2. The REUSE.toml file: 
-The [Reuse Tool](https://reuse.software/) must be used for your samples project. You can find the REUSE.toml in the project initial. Please replace the parts inside the single angle quotation marks < > by the specific information for your repository.
-
-3. The README.md file (this file):
-Please edit this file as it is the primary description file for your project. You can find some placeholder titles for sections below.
-
-# Session ID - Session Title
+# DA264 - Flexible analytics at speed: Calculation views in SAP Business Data Cloud
 
 ## Description
 
-This repository contains the material for the SAP TechEd 2026 session called Session ID - Session Title.  
+This repository contains the material for the SAP TechEd 2026 session called Session DA264 - Flexible analytics at speed: Calculation views in SAP Business Data Cloud.
 
 ## Overview
 
-This session introduces attendees to...
+Explore SAP HANA Cloud calculation views for flexible, high-performance analytics. Create reusable building blocks in the graphical modeling environment to answer complex analytic questions with confidence. Discover AI-assisted modeling, refactoring, and advanced materialization and how this integrates into the SAP Business Data Cloud solution.
+
 
 ## Requirements
 
-The requirements to follow the exercises in this repository are...
+The requirements to follow the exercises in this repository are familiarity with calculation view modeling, an internet browser, and a user as provided during the session
 
 ## Exercises
 
-Provide the exercise content here directly in README.md using [markdown](https://guides.github.com/features/mastering-markdown/) and linking to the specific exercise pages, below is an example.
 
-- [Getting Started](exercises/ex0/)
-- [Exercise 1 - First Exercise Description](exercises/ex1/)
-    - [Exercise 1.1 - Exercise 1 Sub Exercise 1 Description](exercises/ex1#exercise-11-sub-exercise-1-description)
-    - [Exercise 1.2 - Exercise 1 Sub Exercise 2 Description](exercises/ex1#exercise-12-sub-exercise-2-description)
-- [Exercise 2 - Second Exercise Description](exercises/ex2/)
-    - [Exercise 2.1 - Exercise 2 Sub Exercise 1 Description](exercises/ex2#exercise-21-sub-exercise-1-description)
-    - [Exercise 2.2 - Exercise 2 Sub Exercise 2 Description](exercises/ex2#exercise-22-sub-exercise-2-description)
+- [1.0 Flexible Analytics at Speed: Calculation Views in SAP Business Data Cloud](exercises/ex1/README1.0.md)
+    - [1.1 Preparing the Development Environment](exercises/ex1/README1.1.md)
+    - [1.2 Modeling Calculation Views](exercises/ex1/README1.2.md)
+    - [1.3 Refactoring Calculation Views](exercises/ex1/README1.3.md)
+    - [1.4 Use AI Support when Working with Expressions](exercises/ex1/README1.4.md)
+    - [1.5 Define an MDS Cube](exercises/ex1/README1.4.md)
+- [2.0 Use Natural Language to Answer Queries about Calculation Views and Data](exercises/ex2/README2.0.md)
+    - [2.1 Load Calculation View metadata into a knowledge graph and create Data Exploration Tools](exercises/ex2/README2.1.md)
+    - [2.2 Use Data Exploration Tools](exercises/ex2/README2.1.md#22-use-data-exploration-tools)
+- [3.0 Integrate Calculation Views into SAP Business Data Cloud](exercises/ex3/README3.0.md)
+    - [3.1 Semantic Onboarding ](exercises/ex3/README3.1.md)
+    - [3.2 Data Product Consumption in Calculation Views](exercises/ex3/README3.2.md)
 
-  
-**OR** Link to the Tutorial Navigator for example...
-
-Start the exercises [here](https://developers.sap.com/tutorials/abap-environment-trial-onboarding.html).
-
-**IMPORTANT**
-
-Your repo must contain the .reuse and LICENSES folder and the License section below. DO NOT REMOVE the section or folders/files. Also, remove all unused template assets(images, folders, etc) from the exercises folder. 
 
 ## Contributing
 Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) to understand the contribution guidelines.
