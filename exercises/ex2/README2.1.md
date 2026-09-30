@@ -17,7 +17,7 @@
 
     > **Note:** Make sure to replace the string *<YOUR\_USER\_NAME>* with your actual user name below.
 
-    - As *Remote Source* select *DA264_AICore* (1.). The Remote Source connects to the SAP AI Core service that processes the natural language queries.
+    - Choose radio button *Select from existing remote sources* and select *DA264_AICore* (1.). The Remote Source connects to the SAP AI Core service that processes the natural language queries.
     - For *Tool Pair Name* enter T\_<YOUR\_USER\_NAME> (2.)
     - As *Schema* choose the schema with <YOUR\_USER\_NAME> (3.)
     - Name *Index* with *I\_<YOUR\_USER\_NAME>* (4.)
@@ -73,3 +73,5 @@ In the SQL Console two call statements to the two created procedures are already
 You have now successfully created tools and exposed them via database procedures. These procedures can be used to answer natural language questions about your objects and data returned by these objects.
 
 In the next section we will explore how these same calculation views can be integrated into SAP Business Data Cloud.
+
+[next exercise](../ex3/README3.0.md)

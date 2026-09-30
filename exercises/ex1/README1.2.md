@@ -26,6 +26,7 @@ The first calculation view will later (indirectly) serve as a dimension view of 
 
 - Add table *products* as data source to node *Projection*:
 
+    - Click on node *Projection* so that the + icon *Add Data Source* becomes visible
     - Click on *Add Data Source* icon:
 
     ![add data source](../screenshots/calculationview/dimension/addDataSource.png)
@@ -38,7 +39,7 @@ The first calculation view will later (indirectly) serve as a dimension view of 
 
         ![choose table products](../screenshots/calculationview/dimension/chooseProducts.png)
 
-==> The table *products* is added as a data source and can be used in the model
+==> The table *products* is added as a data source and can be used in the model.
 
 - Add all columns to the output:
 
@@ -48,6 +49,8 @@ The first calculation view will later (indirectly) serve as a dimension view of 
     - Use the *Add to Output* button to map all columns to the output (4.) [alternatively: Double-click on the table source]
 
     ![add all columns to output](../screenshots/calculationview/dimension/addColumnsToOutput.png)
+
+==> All columns are mapped to the output of the current node and appear on the right side.
 
  *Embed the text of column "productDescription" in column "embeddedProductDescription"*
 
@@ -112,7 +115,7 @@ The first calculation view will later (indirectly) serve as a dimension view of 
         ![finish calculated column](../screenshots/calculationview/dimension/finishCalculatedColumn.png)
 
 
-*Add input parameter *QueryString* that will be used to enter the search string*
+*Add Input Parameter *QueryString* that will be used to enter the search string*
 
 - Add an input parameter:
 
@@ -128,8 +131,9 @@ The first calculation view will later (indirectly) serve as a dimension view of 
     - Expand the respective sections and
     
         - Assign the data type *NVARCHAR* with length *200* (2.)
-        - Enter *water proven* as *Default Value* (3.)
-        - Press *Back* to close the input parameter editor screen (4.)
+        - Under *Default Values*, click the plus icon to add a constant default value (3.)
+        - Enter *water proven* as *Default Value* (4.)
+        - Press *Back* to close the input parameter editor screen (5.)
     
     ![fill in input parameter details](../screenshots/calculationview/dimension/fillInputParameterDetails.png)
 
@@ -161,7 +165,7 @@ The first calculation view will later (indirectly) serve as a dimension view of 
 
             <img src="../screenshots/calculationview/dimension/generateExpressionWithAI2.png" alt="generate expression with AI" width="200"/>
 
-            A dialog will inform you that the expression could not be validated (This is because the SQL validation currently rejects vector types). 
+            A dialog will inform you that the expression could not be validated (This is because the SQL validation currently rejects vector types). todo: still true?SimilarityQueryProductCategory
         
         - Choose button *Insert Anyway* to add the generated expression into the expression editor
 
@@ -195,17 +199,19 @@ The first calculation view will later (indirectly) serve as a dimension view of 
             ![fill expression](../screenshots/calculationview/dimension/addVectorEmbedding.png)
             
             - Move to tab "Elements" (1.)
-            - Mark *vector2* and replace it with calculated column *embeddedProductDescription* by clicking on it (2.)
+            - Mark *vector2* by double-clicking on it and replace it with calculated column *embeddedProductDescription* under *Calculated Columns* by clicking on it (2.)
             - Replace "text" with input parameter *QueryString* (3.)
 
             ![finalize expression](../screenshots/calculationview/dimension/fillInPlaceholdersSimilarityCalculation.png)
-
+            
+            - Replace *text_type* on the right with *'QUERY'*
+            - Replace *model_and_version* on the right with *'SAP_GXY.20250407'* 
             - The expression should now read: 
             
                 ```SQL
                 COSINE_SIMILARITY(VECTOR_EMBEDDING('$$QueryString$$', 'QUERY', 'SAP_GXY.20250407'),"embeddedProductDescription")
                 ```
-                
+            If not, adjust it.
                 
 - Deploy the calculation view with the rocket icon. Alternatively deploy it by pressing *CTRL* and *d*
 
@@ -226,6 +232,8 @@ You will be prompted for a value of your input parameter *QueryString*:
 - Press the "start" button *Open Content* to display the values (2.)
 
 ![open content](../screenshots/calculationview/dimension/openContent.png)
+
+Calculating the embeddings takes quite some time. Wait till the display refreshes. Then select tab *Raw Data*.
 
 ==> You see data that includes a similarity score in the last column
 
@@ -252,16 +260,16 @@ As you experienced when running the data preview, calculating the embeddings for
 
     - Define the snapshot details and deploy:
 
-        - We keep the default query that you see at the bottom which includes all columns. Thus name the snapshot query *AllColumns* (1.)
+        - We keep the default query that you see at the bottom which includes all columns. Thus name the snapshot query *AllColumns* (1.) and click outside of the text field so that the new name is accepted.
         - Press the Deploy rocket on the top (alternatively CTRL+d) to deploy the calculation view with the snapshot definition. Successful deployment of the snapshot definition is required for the next step (2.)
 
             The deployment will take quite some time because you've kept option *Create Snapshot After Deployment Automatically* which will calculate the embeddings and store them in the snapshot when deploying. Wait till deployment finishes.
 
-*Generate a default interface view*
+        *Generate a default interface view*
 
-- Click on the rocket next to the interface view name once (3.) This will generate an interface view that offers the choice to direct a query, based on an input parameter value, either to the snapshot or the actual calculation view.
+        - Click on the rocket next to the interface view name once (3.) This will generate an interface view that offers the choice to direct a query, based on an input parameter value, either to the snapshot or the actual calculation view.
 
-![generate interface view](../screenshots/calculationview/dimension/snapshot/generateInterfaceView.png)
+        ![generate interface view](../screenshots/calculationview/dimension/snapshot/generateInterfaceView.png)
 
 ==> On the left side in the file tree you can see that a new file *I_storeEmbeddingsProductDescription_AllColumns* has been created. The new calculation view is automatically deployed. 
 
@@ -276,10 +284,10 @@ The generated calculation view makes use of [union pruning](https://help.sap.com
     
 ==> The mapping for union pruning is shown. 
 
-    The following constants are defined:
-        
-    - BASE is assigned to the calculation view source
-    - SNAPSHOT is assigned to the snapshot table source 
+The following constants are defined:
+    
+- BASE is assigned to the calculation view source
+- SNAPSHOT is assigned to the snapshot table source 
 
 - Press button *Cancel* to close the dialog
 
@@ -317,3 +325,5 @@ Start a data preview to see the impact of the snapshot table:
 MDS Cubes are a complementary option to materialize data. Their data structure is optimized for analytic reporting in SAP Analytics Cloud. Currently, no SQL access is available.
 
 We will create an MDS Cube later on the topmost calculation view to which reporting will be directed.
+
+[next exercise](./README1.3.md)

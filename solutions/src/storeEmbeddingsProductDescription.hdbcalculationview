@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="storeEmbeddingsProductDescription" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="storeEmbeddingsProductDescription"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="products">
+    <resourceUri>products</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures>
+  <query id="AllColumns" generatedSnapshotView="I_storeEmbeddingsProductDescription_AllColumns" createSnapshotAfterDeployment="true" doNotCleanUpBeforeDeployment="false" useDefinerMode="false">
+    <queryString>SELECT &quot;product&quot; , &quot;productDescription&quot; , &quot;productCategory&quot; , &quot;productID&quot; , &quot;embeddedProductDescription&quot;  
+FROM  &quot;storeEmbeddingsProductDescription&quot;</queryString>
+  </query>
+</snapshotProcedures>
+<calculationViews/>
+<logicalModel id="products">
+  <attributes>
+    <attribute id="product" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="product"/>
+      <keyMapping columnObjectName="products" columnName="product"/>
+    </attribute>
+    <attribute id="productDescription" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="productDescription"/>
+      <keyMapping columnObjectName="products" columnName="productDescription"/>
+    </attribute>
+    <attribute id="productCategory" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="productCategory"/>
+      <keyMapping columnObjectName="products" columnName="productCategory"/>
+    </attribute>
+    <attribute id="productID" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="productID"/>
+      <keyMapping columnObjectName="products" columnName="productID"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+    <calculatedAttribute id="embeddedProductDescription" order="5" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <keyCalculation datatype="REAL_VECTOR" expressionLanguage="SQL">
+        <formula>VECTOR_EMBEDDING(&quot;productDescription&quot;, 'DOCUMENT', 'SAP_GXY.20250407')</formula>
+      </keyCalculation>
+    </calculatedAttribute></calculatedAttributes>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" id="I_storeEmbeddingsProductDescription_AllColumns" applyPrivilegeType="NONE" dataCategory="DIMENSION" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="I_storeEmbeddingsProductDescription_AllColumns.hdbcalculationview"/>
+<localVariables>
+  <variable id="I_SOURCE" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="8" mandatory="false" defaultValue="SNAPSHOT">
+      <valueDomain type="StaticList">
+        <listEntry id="SNAPSHOT">
+          <descriptions defaultDescription="SNAPSHOT"/>
+        </listEntry>
+        <listEntry id="BASE">
+          <descriptions defaultDescription="BASE"/>
+        </listEntry>
+      </valueDomain>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+
+  <variable id="QueryString" parameter="true">
+    <descriptions defaultDescription=" "/>
+    <variableProperties datatype="NVARCHAR" length="200" mandatory="false" defaultValue="water proven">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings>
+  <mapping xsi:type="Variable:VariableMapping" dataSource="BaseView">
+    <targetVariable name="QueryString" resourceUri="storeEmbeddingsProductDescription"/>
+    <localVariable>QueryString</localVariable>
+  </mapping>
+</variableMappings>
+<dataSources>
+  <DataSource id="BaseView">
+    <resourceUri>storeEmbeddingsProductDescription</resourceUri>
+  </DataSource>
+  <DataSource id="SnapShot">
+    <resourceUri>storeEmbeddingsProductDescription/AllColumns/SNAP/SNAPSHOT</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="product"/>
+      <viewAttribute id="productDescription"/>
+      <viewAttribute id="productCategory"/>
+      <viewAttribute id="productID"/>
+      <viewAttribute id="embeddedProductDescription"/>
+      <viewAttribute datatype="NVARCHAR" length="8" id="SOURCE"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="SimilarityQueryProductCategory" datatype="DOUBLE" expressionLanguage="SQL">
+        <formula>COSINE_SIMILARITY(VECTOR_EMBEDDING('$$QueryString$$', 'QUERY', 'SAP_GXY.20250407'), &quot;embeddedProductDescription&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="BaseView" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="product" source="product"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="productDescription" source="productDescription"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="productCategory" source="productCategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="productID" source="productID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="embeddedProductDescription" source="embeddedProductDescription"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="SOURCE" null="false" value="BASE"/>
+    </input>
+    <input node="SnapShot" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="product" source="product"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="productDescription" source="productDescription"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="productCategory" source="productCategory"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="productID" source="productID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="embeddedProductDescription" source="embeddedProductDescription"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="SOURCE" null="false" value="SNAPSHOT"/>
+    </input>
+    <filter>'$$I_SOURCE$$'=&quot;SOURCE&quot;</filter>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Union_1">
+  <attributes>
+    <attribute id="product" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="product"/>
+      <keyMapping columnObjectName="Union_1" columnName="product"/>
+    </attribute>
+    <attribute id="productDescription" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="productDescription"/>
+      <keyMapping columnObjectName="Union_1" columnName="productDescription"/>
+    </attribute>
+    <attribute id="productCategory" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="productCategory"/>
+      <keyMapping columnObjectName="Union_1" columnName="productCategory"/>
+    </attribute>
+    <attribute id="productID" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="productID"/>
+      <keyMapping columnObjectName="Union_1" columnName="productID"/>
+    </attribute>
+    <attribute id="SimilarityQueryProductCategory" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SimilarityQueryProductCategory"/>
+      <keyMapping columnObjectName="Union_1" columnName="SimilarityQueryProductCategory"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="40" y="185"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

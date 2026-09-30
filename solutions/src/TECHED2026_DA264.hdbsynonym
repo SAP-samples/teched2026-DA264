@@ -1,0 +1,14 @@
+{
+  "salesOrderItemsTechEd2026": {
+    "target": {
+      "object": "salesOrderItemsTechEd2026",
+      "schema": "TECHED2026_DA264"
+    }
+  },
+  "products": {
+    "target": {
+      "object": "products",
+      "schema": "TECHED2026_DA264"
+    }
+  }
+}

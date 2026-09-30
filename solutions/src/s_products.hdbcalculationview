@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" id="s_products" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" generateMdsMetadata="true">
+<descriptions defaultDescription="s_products"/>
+<localVariables>
+  <variable id="QueryString" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="200" mandatory="false" defaultValue="water proven">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+
+  <variable id="I_SOURCE" parameter="true">
+    <descriptions defaultDescription=" "/>
+    <variableProperties datatype="NVARCHAR" length="8" mandatory="false" defaultValue="SNAPSHOT">
+      <valueDomain type="StaticList">
+        <listEntry id="SNAPSHOT">
+          <descriptions defaultDescription="SNAPSHOT"/>
+        </listEntry>
+        <listEntry id="BASE">
+          <descriptions defaultDescription="BASE"/>
+        </listEntry>
+      </valueDomain>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings>
+  <mapping xsi:type="Variable:VariableMapping" forStarJoin="true">
+    <targetVariable name="QueryString" resourceUri="I_storeEmbeddingsProductDescription_AllColumns"/>
+    <localVariable>QueryString</localVariable>
+  </mapping>
+  <mapping xsi:type="Variable:VariableMapping" forStarJoin="true">
+    <targetVariable name="I_SOURCE" resourceUri="I_storeEmbeddingsProductDescription_AllColumns"/>
+    <localVariable>I_SOURCE</localVariable>
+  </mapping>
+</variableMappings>
+<dataSources>
+  <DataSource id="salesOrderItemsTechEd2026">
+    <resourceUri>salesOrderItemsTechEd2026</resourceUri>
+  </DataSource>
+</dataSources>
+<mdsCubes>
+  <mdsCube id="MDSCube_1">
+    <mdsCubeDimensions>
+      <mdsCubeDimension id="I_storeEmbeddingsProductDescription_AllColumns"/>
+      <mdsCubeDimension id="lineItemID"/>
+      <mdsCubeDimension id="orderID"/>
+      <mdsCubeDimension id="orderDate"/>
+      <mdsCubeDimension id="customerID"/>
+      <mdsCubeDimension id="customerName"/>
+      <mdsCubeDimension id="product"/>
+      <mdsCubeDimension id="orderStatus"/>
+      <mdsCubeDimension id="shippingCountry"/>
+      <mdsCubeDimension id="paymentMethod"/>
+    </mdsCubeDimensions>
+    <mdsCubeMeasures>
+      <mdsCubeMeasure id="quantity"/>
+      <mdsCubeMeasure id="unitPrice"/>
+      <mdsCubeMeasure id="lineTotal"/>
+      <mdsCubeMeasure id="discountedPrice"/>
+    </mdsCubeMeasures>
+    <mdsCubeExecutionHints/>
+  </mdsCube>
+</mdsCubes>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="lineItemID"/>
+      <viewAttribute id="orderID"/>
+      <viewAttribute id="orderDate"/>
+      <viewAttribute id="customerID"/>
+      <viewAttribute id="customerName"/>
+      <viewAttribute id="productID"/>
+      <viewAttribute id="product"/>
+      <viewAttribute id="quantity"/>
+      <viewAttribute id="unitPrice"/>
+      <viewAttribute id="lineTotal"/>
+      <viewAttribute id="orderStatus"/>
+      <viewAttribute id="shippingCountry"/>
+      <viewAttribute id="paymentMethod"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="salesOrderItemsTechEd2026"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="lineItemID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="lineItemID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="lineItemID"/>
+    </attribute>
+    <attribute id="orderID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="orderID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="orderID"/>
+    </attribute>
+    <attribute id="orderDate" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="orderDate"/>
+      <keyMapping columnObjectName="Projection_1" columnName="orderDate"/>
+    </attribute>
+    <attribute id="customerID" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="customerID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="customerID"/>
+    </attribute>
+    <attribute id="customerName" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="customerName"/>
+      <keyMapping columnObjectName="Projection_1" columnName="customerName"/>
+    </attribute>
+    <attribute id="product" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="product"/>
+      <keyMapping columnObjectName="Projection_1" columnName="product"/>
+    </attribute>
+    <attribute id="orderStatus" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="orderStatus"/>
+      <keyMapping columnObjectName="Projection_1" columnName="orderStatus"/>
+    </attribute>
+    <attribute id="shippingCountry" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="shippingCountry"/>
+      <keyMapping columnObjectName="Projection_1" columnName="shippingCountry"/>
+    </attribute>
+    <attribute id="paymentMethod" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="paymentMethod"/>
+      <keyMapping columnObjectName="Projection_1" columnName="paymentMethod"/>
+    </attribute>
+    <attribute id="productID$local">
+      <descriptions defaultDescription="productID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="productID"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="quantity" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="quantity"/>
+      <measureMapping columnObjectName="Projection_1" columnName="quantity"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="unitPrice" order="8" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="unitPrice"/>
+      <measureMapping columnObjectName="Projection_1" columnName="unitPrice"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="lineTotal" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="column unitPrice times quantity"/>
+      <measureMapping columnObjectName="Projection_1" columnName="lineTotal"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures>
+    <measure id="discountedPrice" order="13" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="14" scale="2" expressionLanguage="SQL">
+      <formula>-- discount the unit price by 10% if the product category is Electronics, discount it by 20% for Furniture. Calculate the total sum
+
+&quot;lineTotal&quot; *
+  CASE
+    WHEN &quot;I_PD_productCategory&quot; = 'Electronics' THEN 0.90
+    WHEN &quot;I_PD_productCategory&quot; = 'Furniture' THEN 0.80
+    ELSE 1
+  END</formula>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <sortAttributes>
+    <sortAttribute id="I_PD_SimilarityQueryProductCategory" direction="DESC"/>
+  </sortAttributes>
+  <localDimensions/>
+  <sharedDimensions>
+    <logicalJoin associatedObjectUri="I_storeEmbeddingsProductDescription_AllColumns">
+      <attributes>
+        <attributeRef>productID$local</attributeRef>
+      </attributes>
+      <associatedAttributeNames>
+        <attributeName>productID</attributeName>
+      </associatedAttributeNames>
+      <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+      <associatedAttributeFeatures>
+        <attributeReference alias="I_PD_product" attributeName="product"/>
+        <attributeReference alias="I_PD_productDescription" attributeName="productDescription"/>
+        <attributeReference alias="I_PD_productCategory" attributeName="productCategory"/>
+        <attributeReference alias="I_PD_productID" attributeName="productID"/>
+        <attributeReference alias="I_PD_SimilarityQueryProductCategory" attributeName="SimilarityQueryProductCategory"/>
+      </associatedAttributeFeatures>
+    </logicalJoin>
+  </sharedDimensions>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="105" y="215"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="I_storeEmbeddingsProductDescription_AllColumns" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="620" y="30"/>
+      <rectangleSize width="360"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

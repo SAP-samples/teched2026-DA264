@@ -1,12 +1,12 @@
 ### 1.3 Refactoring Calculation Views
 
-We will use several calculation view modeling features to adjust the calculation views. For example, we will move calculated columns and propagate input parameters to adapt to newly created calculation views. In a hypothetical scenario we will assume that you started to use the simple dimension view in a star join and then realized that the interface view is the better choice. We will cover the steps how you could adjust your star join to use the interface view instead.
+We will use several calculation view modeling features to adjust the created calculation views. For example, we will move calculated columns and propagate input parameters to adapt to newly created calculation views. In a hypothetical scenario we will assume that you started to use the simple dimension view in a star join and then realized that the interface view is the better choice. We will cover the steps how you could adjust your star join to use the interface view instead.
 
 #### 1.3.1 Move a Calculated Column 
 
 *Move the calculated column "SimilarityQueryProductCategory" from calculation view "storeEmbeddingsProductDescription" to the union node of calculation view "I_storeEmbeddingsProductDescription_AllColumns"*
 
-The interface view combines two sources. Logically it makes more sense to place the similarity calculation into the interface view so that it works on both sources. Let's move the calculation to the Union node:
+The interface view combines two sources. Logically it makes more sense to place the similarity calculation into the interface view so that it works on both sources instead of keeping it only in source *storeEmbeddingsProductDescription*. Let's move the calculation to the Union node:
 
 - Copy and remove calculated column *SimilarityQueryProductCategory*:
     - Click on (or reopen) the tab with calculation view *storeEmbeddingsProductDescription*
@@ -33,13 +33,13 @@ The interface view combines two sources. Logically it makes more sense to place 
     - Remove mapping of column *SimilarityQueryProductCategory*:
         - Double-click on node *Union_1* to open the details
         - Click on tab *Mapping* to display the column mappings (1.)
-        - On the output column side on the right: right-click on column *SimilarityQueryProductCategory* (3.)
+        - On the *Output Columns* side on the right: right-click on column *SimilarityQueryProductCategory* (3.)
         - Choose *Remove Output Column*
         - In the dialog, accept that the dependencies will also be removed by selecting *Yes*
     
     ![remove column](../screenshots/calculationview/refactor/removeOutputColumnSimilarity.png)
 
-    ==> The column *SimilarityQueryProductCategory* has been removed from the source. 
+    ==> The mapping of column *SimilarityQueryProductCategory* has been removed. 
     
     Let's add it as calculated column (we still have the definition in the clipboard)
 
@@ -48,7 +48,7 @@ The interface view combines two sources. Logically it makes more sense to place 
         - Select tab *Calculated Columns* to work on calculated columns (1.)
         - Use the drop-down of the Copy icon (2.)
         - Choose *Paste* (3.)
-        - A dialog appears with the warning that the calculated column relies on an input parameter that is not available in the target view. Insert the calculated column with *Yes* - we will take care about the missing input parameter later.
+        - A dialog appears with the warning that the calculated column relies on an input parameter that is not available in the target view. Insert the calculated column with *Continue* - we will take care about the missing input parameter later.
 
     ![paste calculated column](../screenshots/calculationview/refactor/pasteCalculatedColumn.png)
 
@@ -71,6 +71,7 @@ By removing calculated column *SimilarityQueryProductCategory* from view *storeE
 
     - Click on (or reopen) the tab with calculation view *storeEmbeddingsProductDescription*
     - Double-click on node *Semantics* to open the details
+    - Choose section *View Properties*
     - Click on tab *Snapshots* (1.)
     - If the details of snapshot query *AllColumns* are not displayed, click on the snapshot query to open the details
     - Click on button *Reset Query* to adapt the snapshot query to the currently available columns (2.)
@@ -79,7 +80,7 @@ By removing calculated column *SimilarityQueryProductCategory* from view *storeE
 
 ==>  To ensure that the database representation is updated, deploy all calculation views:
 
-- In the SAP HANA PROJECTS explorer on the lower left, press the rocket icon which is on the right of folder *src*. This will deploy all changed files in the project:
+- In the SAP HANA PROJECTS explorer on the lower left (you might have to expand it first), press the rocket icon which is on the right of folder *src*. This will deploy all changed files in the project:
 
 ![deploy project](../screenshots/calculationview/refactor/deployProject.png)
 
@@ -130,6 +131,10 @@ In the dialog:
 
 ![connect nodes](../screenshots/calculationview/refactor/connectNodes.png)
 
+==> An arrow should now connect node *Projection_1* to node *Star Join*:
+
+![successful connection](../screenshots/calculationview/refactor/successfulConnection.png)
+
 - Choose which columns should be mapped to the output of node *Projection_1*:
 
     - Double-click on node *Projection_1* to open the details
@@ -177,7 +182,7 @@ The columns of the dimension views in star join nodes are automatically projecte
 - Define the join properties:
 
     - Double-click on node *Star Join* to open the details
-    - Click on tab *Join Details*
+    - Click on tab *Join Definition*
     - Click on column *productID* of source *Projection_1* (1.)
     - Hold the mouse button while moving over to column *productID* of source *storeEmbeddingsProductDescription* (2.) and release the mouse button
         
@@ -237,6 +242,8 @@ You might wonder why the dimension source shows a red icon in the Star Join node
 
 ![error](../screenshots/calculationview/refactor/error.png)
 
+The culprit in this case is column *embeddedProductDescription*, which is of type *REAL_VECTOR*.
+
 After the similarity has been calculated, we don't need the embedding of the descriptions anymore so let's quickly solve this issue by removing the embedding from the output of the dimension view. We could either remove the output column after the union node at which the similarity calculation is done, or hide it from the output of the interface view. For illustrative purposes let's do both. Both approaches solve the issue. We're doing both here purely to compare the two options:
 
 *Remove column "embeddedProductDescription" from the output of view "I_storeEmbeddingsProductDescription_AllColumns"*
@@ -245,6 +252,7 @@ After the similarity has been calculated, we don't need the embedding of the des
     
 - Click on (or reopen) the tab with interface view *I_storeEmbeddingsProductDescription_AllColumns*
 - Double-click on node *Semantics* to see the details
+- Select section *Columns*
 - Set the flag in column *Hidden* for the column with name *embeddedProductDescription* (1.)
 - If the column *Hidden* is not shown, use button *Customize Column Display* (0.) to select it as a visible column
 
@@ -254,10 +262,10 @@ After the similarity has been calculated, we don't need the embedding of the des
 ##### 1.3.2.2b Remove column *embeddedProductDescription* from the output of node *Projection*
 
 - Click on (or reopen) the tab with interface view *I_storeEmbeddingsProductDescription_AllColumns*
-- Double-click on node *Projection* to see the details (1.)
-- Click on tab *Mapping* (2.)
-- On the output side: right-click on column *embeddedProductDescription* and choose *Remove Output Column* (3.)
-- If you have not hidden the column in the Semantics node, you will be informed about the impact that this action has. If the column is already hidden removing the column in the Projection node has no further impact 
+- Double-click on node *Projection* to see the details
+- Click on tab *Mapping* (1.)
+- On the output side: right-click on column *embeddedProductDescription* (2.) and choose *Remove Output Column* (3.)
+- You will be informed about the impact that this action has. Accept it with *Yes*
 
 ![remove output column](../screenshots/calculationview/refactor/removeOutputColumn.png)
 
@@ -276,6 +284,8 @@ To ensure that the database representation is updated, deploy all calculation vi
 - In the SAP HANA PROJECTS explorer on the lower left, press the rocket icon right to the folder *src*. This will deploy all changed files in the project:
 
 ![deploy project](../screenshots/calculationview/refactor/deployProject.png)
+
+todo: there is a bug so the error indicator is not updated. Either fix it, or explain it or move this section before the replacement section.
 
 
 #### 1.3.3 Map Input Parameters 
@@ -315,6 +325,8 @@ The next dialog lists the impacted calculation views to which the input paramete
 - You can now remove the input parameter from the current view by selecting it (1.) and pressing button *Remove* (2.)
 
 ![remove input parameter](../screenshots/calculationview/refactor/remove.png)
+
+- An information box informs you about the impact of this removal action. Proceed with *Yes*
 
 Let's propagate the parameter *I_SOURCE* from calculation view *I_storeEmbeddingsProductDescription_AllColumns* to *s_products* so we can select between *SNAPSHOT* and *BASE* data when querying *s_products*:
 
@@ -375,10 +387,12 @@ In the dialog:
 
 - Select tab *Raw Data* to see the raw values 
 
-==> The default query has no explicit order specification and you see the data sorted by the similarity score in descending order.
+==> The default query has no explicit order specification that would otherwise overwrite your specification in the calculation view and you see the data sorted according to your definintion based on the similarity column in descending order.
 
 - Switch to tab *Analysis* and drag and drop the columns of your interest. Here is an example:
 
 ![analysis](../screenshots/calculationview/refactor/analysis.png)
 
-==> The analysis tab explicitly sorts the results according to the sequence under *Label Axis*. This overwrites the defined sorting order based on *SimilarityQueryProductCategory*
+==> The Analysis tab explicitly sorts the results according to the sequence under *Label Axis*. This overwrites the defined sorting order based on *I_PD_SimilarityQueryProductCategory*
+
+[next exercise](./README1.4.md)

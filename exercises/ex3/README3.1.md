@@ -8,18 +8,18 @@ The semantic onboarding process starts in SAP Business Application Studio by mar
 
 *Make calculation view "s_products" available for semantic onboarding*
 
-- in SAP Business Application Studio double click on calculation view file *s_products* in the left *EXPLORER* window to open *s_products* in the editor.
+- in SAP Business Application Studio double-click on calculation view file *s_products* in the left *EXPLORER* window to open *s_products* in the editor.
 
 *Choose "Construction Kit" as SAP Business Data Cloud Integration Mode*
-- Click on node "Semantics" to open the Semantics details (1.)
+- Double-click on node "Semantics" to open the Semantics details (1.)
 - Navigate under *View Properties* and *General* to the field *SAP Business Data Cloud Integration Mode*
 - Select *Construction Kit* from the drop-down (2.)
 
 ![construction kit](../screenshots/semanticOnboarding/constructionKit.png)
 
-Mode *Construction Kit* exposes only the Private columns of a star-join. Choose this mode if the model in SAP Datasphere should be flexibly changed or enhanced. *Construction Kit* exposes the transactional data separately from the dimension views. We will later also expose the dimension view *I_storeEmbeddingsProductDescription_AllColumns* and see that it will be automatically associated to the transactional data in SAP Datasphere. 
+Mode *Construction Kit* exposes only the Private columns of a star join. Thus it exposes the transactional data separately from the dimension views. We will later also expose the dimension view *I_storeEmbeddingsProductDescription_AllColumns* and see that it will be automatically associated to the transactional data in SAP Datasphere. Choose this mode if the model in SAP Datasphere should be flexibly changed or enhanced. 
 
-The alternative mode *Flat View* exposes all columns of the current star-join view as a flat structure. This is a quick way to expose all columns, also of the dimension views, but at the same time this reduces the flexibility to choose which dimensions to reuse in SAP Datasphere and also leads to loss of structural information such as hierarchy information.
+The alternative mode *Flat View* exposes all columns of the current star join view as a flat structure. This is a quick way to expose all columns, also of the dimension views, but at the same time this reduces the flexibility to choose which dimensions to reuse in SAP Datasphere and also leads to loss of structural information such as hierarchy information.
 
 - Deploy the model by clicking on the rocket on the top-right, or using *CTRL* and *d*
 
@@ -29,7 +29,7 @@ The alternative mode *Flat View* exposes all columns of the current star-join vi
 
 *Start SAP Datasphere*
 
-- Open a new browser tab and navigate to: https://trial-bdc-datasphere-3.eu10.hcs.cloud.sap/dwaas-core/index.html#/home
+- Open a new browser tab and navigate to: https://trial-bdc-datasphere-3.eu10.hcs.cloud.sap/dwaas-core/index.html#/home todo validate
 
 *Start the semantic onboarding process for calculation view "s_products"*
 
@@ -57,7 +57,7 @@ The alternative mode *Flat View* exposes all columns of the current star-join vi
 
     ![deploy](../screenshots/semanticOnboarding/deploy.png)
 
-==> The import and deployment starts. You will see a notification when deployment has finished.
+==> The import and deployment starts. You will see a notification when deployment has finished. Wait (1-2 minutes) till you see the notification.
 
 *Open the deployed model*
 - Click on the notification icon to see the details (1.)
@@ -68,13 +68,15 @@ The alternative mode *Flat View* exposes all columns of the current star-join vi
 - Click on your Remote Table *s_products* to open it
     ![open model](../screenshots/semanticOnboarding/openModel.png)
 
-==> The model has taken over information about the input parameters (1.). However, no associations are defined (2.) because we did not import the dimension view yet. Let's do this next.
+==> The model has taken over information about the 2 input parameters (1.). However, no (0) associations are defined (2.) because we did not import the dimension view yet. Let's do this next.
 ![s_products display](../screenshots/semanticOnboarding/sProductsDisplay.png)
+
+> **Note:** We could have also imported the star join and the dimension view together. The separate approach was chosen to illustrate the automatic association that will be generated also for sequentially imported objects.
 
 *Semantic Onboard the dimension view "I_storeEmbeddingsProductDescription_AllColumns"*
 - In SAP Business Application Studio:
-    - Double click on calculation view *I_storeEmbeddingsProductDescription_AllColumns* in the EXPLORER window on the left side to open it
-    - Click on node "Semantics" to open the Semantics details
+    - Double-click on calculation view *I_storeEmbeddingsProductDescription_AllColumns* in the EXPLORER window on the left side to open it
+    - Double-click on node "Semantics" to open the Semantics details
     - Navigate under *View Properties* and *General* to the field *SAP Business Data Cloud Integration Mode*
     - Select *Construction Kit* from the drop-down 
     - Deploy the model by clicking on the rocket on the top-right, or using *CTRL* and *d*
@@ -102,7 +104,7 @@ The alternative mode *Flat View* exposes all columns of the current star-join vi
         - Select calculation view *I_storeEmbeddingsProductDescription_AllColumns* in your schema (1.)
         - Click on *Next Step* (2.)
     
-            ![choose dimension view](../screenshots/semanticOnboarding/chooseDimensionView.png) --> todo
+            ![choose dimension view](../screenshots/semanticOnboarding/chooseDimensionView.png) 
 
         - In the next screen choose *Start Import and Deploy*
     
@@ -114,14 +116,14 @@ The alternative mode *Flat View* exposes all columns of the current star-join vi
         - Click on the notification icon to see the details (1.)
         - Click at the topmost import statement to open your model (2.)
 
-        ![open import dimension view](../screenshots/semanticOnboarding/openImportDimensionView.png) --> todo
+        ![open import dimension view](../screenshots/semanticOnboarding/openImportDimensionView.png)
 
         - Click on your Remote Table *I_storeEmbeddingsProductDescription_AllColumns* to open it
 
 
         ==> The model has taken over information about the input parameters. 
         
-    *Check how the Remote Table of the star-join view "s_products" has changed by the import of the dimension view.*
+    *Check how the Remote Table of the star join view "s_products" has changed by the import of the dimension view.*
 
     - Click on icon *Repository Explorer* on the left (1.)
     - Choose *My Objects* (2.)
@@ -174,18 +176,18 @@ Let's create an analytic model next so you can continue modeling in SAP Datasphe
 
     ![enter input parameter value](../screenshots/semanticOnboarding/inputParameterEntry.png)
 
-==> The data are fetched from HANA Cloud and displayed. You can now add or remove columns from the preview screen
+==> The data are fetched from SAP HANA Cloud and displayed. You can now add or remove columns from the preview screen
 
 *Add columns "productDescription" and "similarityToQuery" to the Rows*
 - Expand the dimension *productID* (1.)
-- Click on the Row icons to add columns *productDescription* and *similarityToQuery* to the *Rows*
+- Click on the Row icons to add columns *productDescription* and *SimilarityQueryProductCategory* to the *Rows*
 
 ==> The data display is refreshed and you can now see both columns 
 
 ![data display](../screenshots/semanticOnboarding/dataDisplay.png)
 
 
-
+[next exercise](./README3.2.md)
 
 todo:
 roles have to be granted to DBADMIN (connection user):

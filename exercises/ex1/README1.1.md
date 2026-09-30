@@ -4,9 +4,9 @@
 
 A developer space is the environment in which you will develop objects and that you can customize to your needs. To start developing thus create a developer space first.
 
-*Create a SAP HANA Native Application dev space DevSpace_\<your user name\> under <todo> and start it*
+*Create a SAP HANA Native Application dev space DevSpace_\<your user name\> under \<todo\ https://sap-core-ai-chatbot-eu10-eqvsquev.eu10cf.applicationstudio.cloud.sap/index.html?externalRedirect=true> and start it*
 
-- Browser Chrome enter: <todo> to navigate to the dev space management
+- Browser Chrome enter: \<todo\https://sap-core-ai-chatbot-eu10-eqvsquev.eu10cf.applicationstudio.cloud.sap/index.html?externalRedirect=true> to navigate to the dev space management
 - Click on button **Create Dev Space** to create a Dev Space:
 
     ![create dev space](../screenshots/createProject/createDevSpace.png)
@@ -15,7 +15,7 @@ A developer space is the environment in which you will develop objects and that 
 
 - Enter the following information to specify the Dev Space:
     
-    1. Use **DevSpace_\<your user name\>** as the name for the developer space. Replace \<your user name\> with your user name. Your username starts with *CFN_* and ends in the three digits that are stuck to your computer (1.).
+    1. Use **DevSpace_\<your user name\>** as the name for the developer space. Replace \<your user name\> with your user name. Your username starts with *CFN_* and ends in the three digits that are stuck to your computer (1.). todo: validate name
     2. Choose **SAP HANA Native Application** as the type of application that you want to develop. This includes all necessary extensions to model calculation views (2.)
     3. Press **Create Dev Space** (3.)
 
@@ -23,7 +23,7 @@ A developer space is the environment in which you will develop objects and that 
 
 ==> The dev space will be created
 
-When the dev space has been created:
+When the dev space has been created and is in state RUNNING:
 
 - Open the dev space by clicking on the name of the dev space:
 
@@ -49,7 +49,7 @@ Before you can model a calculation view you need to create a project in which yo
 
     ![choose template](../screenshots/createProject/chooseProjectTemplate.png)
 
-- Enter \<your user name\> as name of the project (1.) and choose *Next* (2.):
+- Enter P\_\<your user name\> as name of the project (1.) and choose *Next* (2.):
 
     ![enter project name](../screenshots/createProject/nameProject.png)
 
@@ -61,9 +61,11 @@ Before you can model a calculation view you need to create a project in which yo
 
     ![accept database defaults](../screenshots/createProject/setDatabaseInformation.png)
 
-- When asked to sign-in into Cloud Foundry:****
+- When asked to sign-in into Cloud Foundry:
 
-    - Click on the URL:
+    - Ensure that the Cloud Foundry Endpoint is https://api.cf.eu10-005.hana.ondemand.com (1.) todo
+
+    - Click on the URL (2.):
 
         ![sign in to Cloud Foundry](../screenshots/createProject/signInCF.png)
     
@@ -77,13 +79,13 @@ Before you can model a calculation view you need to create a project in which yo
 
     - Click Apply to choose the selected Organization and Cloud Foundry Space: 
 
-        todo
+        ![apply space](../screenshots/createProject/applySpace.png)
 
     - Keep the default and press *Finish*:
 
         ![finish project creation](../screenshots/createProject/finishProjectCreation.png)
 
-==> A Project with your name will be created and added to your Workspace:
+==> A Project with your name will be created and added to your Workspace (this can take 1-2 minutes):
 
 ![created project](../screenshots/createProject/createdProject.png)
 
@@ -107,7 +109,7 @@ By default a project has only access to its own objects. If objects from outside
 
     - Choose *Create user-provided service instance* (1.)
     - Enter *UPS_\<your user name \>* as service instance name (2.)
-    - Enter *UPS_\<your user name \>* also as the database user (3.) (todo: create users: create user UPS_yourUserName password "tIAUPEWN1!";
+    - Enter *UPS_\<your user name \>* also as the database user (3.) (todo: create users: create user UPS_yourUserName password "...";
 alter user UPS_yourUserName disable password lifetime;
 grant select on schema TECHED2026_DA264 to UPS_yourUserName with GRANT OPTION;)
 
@@ -117,9 +119,11 @@ grant select on schema TECHED2026_DA264 to UPS_yourUserName with GRANT OPTION;)
 
     ![specify database connection details](../screenshots/createUPS/specifyDatabaseConnection.png)
 
-==> A user provided service has been created and added to your project. Also a .hdbgrants file has been generated
+==> A user provided service has been created and added to your project. Also a .hdbgrants file has been generated.
 
 ##### 1.1.3.2 Granting Privileges Using the User Provided Service
+
+Schema *TECHED2026_DA264* contains the tables on which we will build the calculation views.
 
 *Grant SELECT privileges on schema **TECHED2026_DA264** using the User Provided Service*
 
@@ -129,21 +133,23 @@ grant select on schema TECHED2026_DA264 to UPS_yourUserName with GRANT OPTION;)
 
 - In the opened .hdbgrants file:
     - Select tab *Object Owner* (1.)
-    - Enter *TECHED2026_DA264* as schema (2.)  
-    - Remove all privileges except for *SELECT* by clicking on the small trash icon behind each privilege that should be removed (3.) 
+    - Expand section *Schema Privileges* (2.)
+    - Enter *TECHED2026_DA264* as schema (3.)  
+    - Remove all privileges except for *SELECT* by clicking on the small trash icon behind each privilege that should be removed (4.) 
 
     ![define privileges for OO](../screenshots/grantPrivileges/grantPrivilegesToOO.png)
 
-    ==> When deployed, this will grant SELECT WITH GRANT OPTION on schema *TECHED2026_DA264* to the object owner 
+    When we deploy the file later this setting will ensure that SELECT WITH GRANT OPTION on schema *TECHED2026_DA264* is granted to the object owner. 
 
     - Select tab *Application User* (1.)
-    - Enter *TECHED2026_DA264* as schema (2.)
-    - Remove all privileges except for SELECT (3.)
-    - Deploy the .hdbgrants file by pressing the rocket icon (4.)
+    - Expand section *Schema Privileges* (2.)
+    - Enter *TECHED2026_DA264* as schema (3.)
+    - Remove all privileges except for SELECT (4.)
+    - Deploy the .hdbgrants file by pressing the rocket icon (5.)
 
     ![define privileges for AU](../screenshots/grantPrivileges/grantPrivilegesToAU.png)
 
-    ==> The defined privileges will now be granted to the object owner and the application user using the database user that you have specified when creating the user provided service. Afterwards your project can report on objects in schema *TECHED2026_DA264*
+    ==> The defined privileges will now be granted to the object owner and the application user using the database user that you have specified when creating the user provided service. Afterwards your project can report on objects in schema *TECHED2026_DA264*.
 
 
 ##### 1.1.3.3 Mass Generation of Synonyms
@@ -178,3 +184,5 @@ You've granted *SELECT* privileges for schema *TECHED2026_DA264* and thus are al
 
 
 ==> The synonyms to both tables in schema *TECHED2026_DA264* have been created and can now be used during modeling
+
+[next exercise](./README1.2.md)

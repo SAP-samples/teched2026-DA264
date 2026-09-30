@@ -32,3 +32,5 @@ In the dialog
 - Deploy the model by clicking on the rocket on the top-right, or using *CTRL* and *d*
 
 ==> Your MDS Cube is now defined and can be selected in SAP Analytics Cloud for reporting
+
+[next exercise](../ex2/README2.0.md)

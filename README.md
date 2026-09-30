@@ -25,7 +25,7 @@ The requirements to follow the exercises in this repository are familiarity with
 - [2.0 Use Natural Language to Answer Queries about Calculation Views and Data](exercises/ex2/README2.0.md)
     - [2.1 Load Calculation View metadata into a knowledge graph and create Data Exploration Tools](exercises/ex2/README2.1.md)
     - [2.2 Use Data Exploration Tools](exercises/ex2/README2.1.md#22-use-data-exploration-tools)
-- [3.0 Integrate Calculation Views into SAP Business Data Cloud](exercises/ex3/README3.0.md)
+- [3.0 Calculation Views in the Context of SAP Business Data Cloud](exercises/ex3/README3.0.md)
     - [3.1 Semantic Onboarding ](exercises/ex3/README3.1.md)
     - [3.2 Data Product Consumption in Calculation Views](exercises/ex3/README3.2.md)
 

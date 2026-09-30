@@ -5,7 +5,7 @@
 In the previous sections, you could generate the calculated expressions using AI support. Let's dig into this option in more detail by creating a calculated column that calculates different discounts based on product categories.
 
 - Click on (or reopen) the tab with the calculation view *s_products*
-- Double-click on node *Semantics* to see the Details
+- Double-click on node *Star Join* to see the Details
 - Click on tab *Calculated Columns* (1.)
 - Use the + icon drop-down (2.)
 - Select *Calculated Column* (3.)
@@ -19,6 +19,9 @@ In the previous sections, you could generate the calculated expressions using AI
 - Enter *2* as *Scale* (4.)
 - Expand section *Semantics* (5.) 
 - Choose *Measure* as *Column Type* (6.)
+  
+    As *discountedPrice* has been automatically added to the output, a dialog informs you that changing it to a measure changes this output column. 
+- Continue with *Yes*
 - Expand section *Expression* (7.)
 - Click on *Expression Editor* to open the editor (8.)
 
@@ -36,7 +39,7 @@ In the expression editor:
 
 ![generate expression](../screenshots/calculationview/generateExpression/generateExpression.png)
 
-==> An expression will be generated based on your description
+==> A dialog will inform you about the use of AI functionality. Close the dialog. An expression will be generated based on your description.
 
 The generated expression will look similar to:
 
@@ -128,4 +131,6 @@ In this case you have designed the expression recently but imagine you encounter
 
     - Select tab *Raw Data* to see the raw values 
 
-==>	You see the *lineTotal* discounted depending on the product category in column *discountedPrice*
+==>	You see the *lineTotal* discounted depending on the product category in column *discountedPrice*.
+
+[next exercise](./README1.5.md)
