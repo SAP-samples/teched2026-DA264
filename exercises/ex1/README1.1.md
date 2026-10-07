@@ -4,9 +4,10 @@
 
 A developer space is the environment in which you will develop objects and that you can customize to your needs. To start developing thus create a developer space first.
 
-*Create a SAP HANA Native Application dev space DevSpace_\<your user name\> under \<todo\ https://sap-core-ai-chatbot-eu10-eqvsquev.eu10cf.applicationstudio.cloud.sap/index.html?externalRedirect=true> and start it*
+*Create a SAP HANA Native Application dev space DevSpace_\<your user name\> [https://sap-build-hana-cloud.eu10cf.applicationstudio.cloud.sap/index.html](https://sap-build-hana-cloud.eu10cf.applicationstudio.cloud.sap/index.html) and start it*
 
-- Browser Chrome enter: \<todo\https://sap-core-ai-chatbot-eu10-eqvsquev.eu10cf.applicationstudio.cloud.sap/index.html?externalRedirect=true> to navigate to the dev space management
+- In Browser Chrome enter: [https://sap-build-hana-cloud.eu10cf.applicationstudio.cloud.sap/index.html](https://sap-build-hana-cloud.eu10cf.applicationstudio.cloud.sap/index.html)] to navigate to the dev space management
+
 - Click on button **Create Dev Space** to create a Dev Space:
 
     ![create dev space](../screenshots/createProject/createDevSpace.png)
@@ -63,11 +64,15 @@ Before you can model a calculation view you need to create a project in which yo
 
 - When asked to sign-in into Cloud Foundry:
 
-    - Ensure that the Cloud Foundry Endpoint is https://api.cf.eu10-005.hana.ondemand.com (1.) todo
+    - Ensure that the Cloud Foundry Endpoint is [https://api.cf.eu10-005.hana.ondemand.com](https://api.cf.eu10-005.hana.ondemand.com) (1.) 
 
     - Click on the URL (2.):
 
         ![sign in to Cloud Foundry](../screenshots/createProject/signInCF.png)
+
+    - Enter *academy-eu-platform* as the identity provider and choose *Sign in with alternative identity provider*.
+
+        ![choose identity provider](../screenshots/createProject/chooseIdentityProvider.png)
     
     - Copy the authentication code in the newly opened tab:
 
@@ -109,10 +114,7 @@ By default a project has only access to its own objects. If objects from outside
 
     - Choose *Create user-provided service instance* (1.)
     - Enter *UPS_\<your user name \>* as service instance name (2.)
-    - Enter *UPS_\<your user name \>* also as the database user (3.) (todo: create users: create user UPS_yourUserName password "...";
-alter user UPS_yourUserName disable password lifetime;
-grant select on schema TECHED2026_DA264 to UPS_yourUserName with GRANT OPTION;)
-
+    - Enter *\<your user name \>* as the database user (3.)
     - As password enter the password from the flipchart (4.)
     - Choose to generate the .hdbgrants file (5.)
     - Press "Add" to accept the specifications (6.)
