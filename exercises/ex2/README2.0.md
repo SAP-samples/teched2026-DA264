@@ -8,7 +8,6 @@ SAP HANA Cloud Central is the management interface for SAP HANA Cloud, which hos
 - Open a new tab in your browser
 - Navigate to https://academyeuhanacloud.hana-tooling.ingress.orchestration.prod-eu10.hanacloud.ondemand.com/hcs/sap/hana/cloud/index.html?#/&/databases/instance/3731ec7f-6eb3-424b-8df9-dfa20b96888d/TwoColumnsMidExpanded/?tab=overviewSelection
 
-todo validate link
 
 ==> You will see the database overview page. To start, look for the three-dot menu in the top-right corner.
 

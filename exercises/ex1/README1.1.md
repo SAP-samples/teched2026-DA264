@@ -16,7 +16,7 @@ A developer space is the environment in which you will develop objects and that 
 
 - Enter the following information to specify the Dev Space:
     
-    1. Use **DevSpace_\<your user name\>** as the name for the developer space. Replace \<your user name\> with your user name. Your username starts with *CFN_* and ends in the three digits that are stuck to your computer (1.). todo: validate name
+    1. Use **DevSpace_\<your user name\>** as the name for the developer space. Replace \<your user name\> with your user name. Your username starts with *CFN_* and ends in the three digits that are stuck to your computer (1.). 
     2. Choose **SAP HANA Native Application** as the type of application that you want to develop. This includes all necessary extensions to model calculation views (2.)
     3. Press **Create Dev Space** (3.)
 

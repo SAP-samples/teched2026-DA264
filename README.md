@@ -2,7 +2,7 @@
 
 ## Description
 
-This repository contains the material for the SAP TechEd 2026 session called Session DA264 - Flexible analytics at speed: Calculation views in SAP Business Data Cloud.
+This repository contains the link to the materials for the SAP TechEd 2026 session called Session DA264 - Flexible analytics at speed: Calculation views in SAP Business Data Cloud. 
 
 ## Overview
 
@@ -15,20 +15,14 @@ The requirements to follow the exercises in this repository are familiarity with
 
 ## Exercises
 
+To start the exercises open the **[workbook](https://basic-trials-test-eu10.cfapps.eu10-004.hana.ondemand.com/)**. Enter your user name and the password. 
 
-- [1.0 Flexible Analytics at Speed: Calculation Views in SAP Business Data Cloud](exercises/ex1/README1.0.md)
-    - [1.1 Preparing the Development Environment](exercises/ex1/README1.1.md)
-    - [1.2 Modeling Calculation Views](exercises/ex1/README1.2.md)
-    - [1.3 Refactoring Calculation Views](exercises/ex1/README1.3.md)
-    - [1.4 Use AI Support when Working with Expressions](exercises/ex1/README1.4.md)
-    - [1.5 Define an MDS Cube](exercises/ex1/README1.4.md)
-- [2.0 Use Natural Language to Answer Queries about Calculation Views and Data](exercises/ex2/README2.0.md)
-    - [2.1 Load Calculation View metadata into a knowledge graph and create Data Exploration Tools](exercises/ex2/README2.1.md)
-    - [2.2 Use Data Exploration Tools](exercises/ex2/README2.1.md#22-use-data-exploration-tools)
-- [3.0 Calculation Views in the Context of SAP Business Data Cloud](exercises/ex3/README3.0.md)
-    - [3.1 Semantic Onboarding ](exercises/ex3/README3.1.md)
-    - [3.2 Data Product Consumption in Calculation Views](exercises/ex3/README3.2.md)
+**User name**
+- add the two digits number on your notbook at the end of "TAC042692U", e.g., "TAC042692U**01**"
 
+**Password**
+
+- the password will be delivered during the session and shown on the power point slide in front of you. 
 
 ## Contributing
 Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) to understand the contribution guidelines.

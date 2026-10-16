@@ -29,7 +29,7 @@ The alternative mode *Flat View* exposes all columns of the current star join vi
 
 *Start SAP Datasphere*
 
-- Open a new browser tab and navigate to: https://trial-bdc-datasphere-3.eu10.hcs.cloud.sap/dwaas-core/index.html#/home todo validate
+- Open a new browser tab and navigate to: https://trial-bdc-datasphere-3.eu10.hcs.cloud.sap/dwaas-core/index.html#/home 
 
 *Start the semantic onboarding process for calculation view "s_products"*
 
@@ -188,7 +188,3 @@ Let's create an analytic model next so you can continue modeling in SAP Datasphe
 
 
 [next exercise](./README3.2.md)
-
-todo:
-roles have to be granted to DBADMIN (connection user):
-grant "TEST_HDI_DB_1::access_role" to DBADMIN

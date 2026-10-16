@@ -159,13 +159,10 @@ The first calculation view will later (indirectly) serve as a dimension view of 
             ```SQL
             -- calculate the similarity between the input parameter value and product description
             ```
-         todo: is query and model required?
     
         - Use the AI drop-down to select *Generate Expression with AI*
 
             <img src="../screenshots/calculationview/dimension/generateExpressionWithAI2.png" alt="generate expression with AI" width="200"/>
-
-            A dialog will inform you that the expression could not be validated (This is because the SQL validation currently rejects vector types). todo: still true?SimilarityQueryProductCategory
         
         - Choose button *Insert Anyway* to add the generated expression into the expression editor
 
