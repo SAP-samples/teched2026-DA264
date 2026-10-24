@@ -285,9 +285,6 @@ To ensure that the database representation is updated, deploy all calculation vi
 
 ![deploy project](../screenshots/calculationview/refactor/deployProject.png)
 
-todo: there is a bug so the error indicator is not updated. Either fix it, or explain it or move this section before the replacement section.
-
-
 #### 1.3.3 Map Input Parameters 
 
 *Ensure that all input parameters are available in calculation view s_products*
