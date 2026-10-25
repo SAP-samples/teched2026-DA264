@@ -27,7 +27,7 @@ In the dialog
 
 ![add all dimensions](../screenshots/MDSCube/addAllDimensions.png)
 
-- Repeat the steps under section *Measures* to add all measures to the MDS Cube
+- Repeat the steps under section *Measures* to add *quantity*, *unitPrice* and *lineTotal* as measures
 
 - Deploy the model by clicking on the rocket on the top-right, or using *CTRL* and *d*
 

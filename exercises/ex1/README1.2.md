@@ -133,7 +133,7 @@ The first calculation view will later (indirectly) serve as a dimension view of 
         - Assign the data type *NVARCHAR* with length *200* (2.)
         - Under *Default Values*, click the plus icon to add a constant default value (3.)
         - Enter *water proven* as *Default Value* (4.)
-        - Press *Back* to close the input parameter editor screen (5.)
+        - Press *Back* twice to close the input parameter editor screen (5.)
     
     ![fill in input parameter details](../screenshots/calculationview/dimension/fillInputParameterDetails.png)
 

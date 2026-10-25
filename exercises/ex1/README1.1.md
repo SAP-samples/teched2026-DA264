@@ -156,7 +156,7 @@ Schema *TECHED2026_DA264* contains the tables on which we will build the calcula
 
 ##### 1.1.3.3 Mass Generation of Synonyms
 
-You've granted *SELECT* privileges for schema *TECHED2026_DA264* and thus are allowed to create models on top of tables in schema *TECHED2026_DA264*. However, HANA Deployment Infrastructure (HDI) requires that you refer with synonyms to objects outside of the current HDI container. Let's create these synonyms next.
+You've granted *SELECT* privileges for schema *TECHED2026_DA264* and thus are allowed to create models on top of tables in schema *TECHED2026_DA264*. However, HANA Deployment Infrastructure (HDI) requires that you refer with synonyms to objects outside of the current HDI container. Let's create these synonyms next. If something unexpected happens, simply close and reopen the .hdbsynonym file and continue.
 
 *Create Synonyms for all Tables in Schema TECHED2026_DA264*
 

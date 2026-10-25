@@ -18,7 +18,7 @@ The requirements to follow the exercises in this repository are familiarity with
 To start the exercises open the **[workbook](https://basic-trials-test-eu10.cfapps.eu10-004.hana.ondemand.com/)**. Enter your user name and the password. 
 
 **User name**
-- add the two digits number on your notbook at the end of "TAC042686U", e.g., "TAC042686U**01**"
+- add the two digits number on your notbook at the end of "TAC0426U", e.g., "TAC0426U**01**" **and follow the instructions in the live session**
 
 **Password**
 
