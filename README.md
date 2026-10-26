@@ -1,5 +1,7 @@
 # DA264 - Flexible analytics at speed: Calculation views in SAP Business Data Cloud
 
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/teched2026-DA264)](https://api.reuse.software/info/github.com/SAP-samples/teched2026-DA264)
+
 ## Description
 
 This repository contains the link to the materials for the SAP TechEd 2026 session called Session DA264 - Flexible analytics at speed: Calculation views in SAP Business Data Cloud. 
@@ -35,4 +37,4 @@ Please read the [SAP Open Source Code of Conduct](https://github.com/SAP-samples
 Support for the content in this repository is available during the actual time of the online session for which this content has been designed. Otherwise, you may request support via the [Issues](../../issues) tab.
 
 ## License
-Copyright (20xx-)20xx SAP SE or an SAP affiliate company and <your-project> contributors. Please see our [LICENSE](LICENSE) for copyright and license information. Detailed information including third-party components and their licensing/copyright information is available [via the REUSE tool](https://api.reuse.software/info/github.com/SAP/<your-project>).
+Copyright 2026 SAP SE or an SAP affiliate company and <your-project> contributors. Please see our [LICENSE](LICENSE) for copyright and license information. Detailed information including third-party components and their licensing/copyright information is available [via the REUSE tool](https://api.reuse.software/info/github.com/SAP-samples/teched2026-DA264).
